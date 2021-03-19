@@ -22,27 +22,28 @@ public class StudentService extends AbstractDAO implements StudentDAO {
 		}finally {
 			dispose();
 		}
-	
+
+		System.out.println("Student RESULT" + result);
 		return result;
 	}
 
 	@Override
 	public Student getStudentByEmail(String email) {
-		Student result = null;
+		Object result = null;
 		
-//		String sql = "SELECT e FROM Student e WHERE e.";
-//		try {
-//			connect();
-//			result = em.createQuery(sql, Student.class).getResultList();
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			dispose();
-//		}
+		try {
+			connect();
+			result = em.createQuery("SELECT s FROM Student s WHERE s.sEmail = :email ").setParameter("email", email).getSingleResult();
+					;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			dispose();
+		}
 //		
 		
-		
-		return result;
+		System.out.println(result);
+		return null;
 	}
 
 	@Override
