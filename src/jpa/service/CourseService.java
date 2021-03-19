@@ -16,8 +16,6 @@ public class CourseService extends AbstractDAO implements CourseDAO {
 		try {
 			connect();
 			result = em.createQuery(sql, Course.class).getResultList();
-			System.out.println("HERE IS THE LISt");
-			System.out.println(result);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

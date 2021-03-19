@@ -1,6 +1,7 @@
 package jpa.entitymodels;
 
-import javax.persistence.Basic;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,20 +13,20 @@ public class Course {
 
 
 
-@Basic
+@Column(nullable = false)
 	String cName;
-@Basic
-	String cInstuctorName;
+@Column(nullable = false)
+	String cInstructorName;
 	
 public Course() {
 	super();
 }
 	
-	public Course(int cId, String cName, String cInstuctorName) {
+	public Course(int cId, String cName, String cInstructorName) {
 		super();
 		this.cId = cId;
 		this.cName = cName;
-		this.cInstuctorName = cInstuctorName;
+		this.cInstructorName = cInstructorName;
 	}
 
 
@@ -50,12 +51,12 @@ public Course() {
 
 
 	public String getcInstuctorName() {
-		return cInstuctorName;
+		return cInstructorName;
 	}
 
 
 	public void setcInstuctorName(String cInstuctorName) {
-		this.cInstuctorName = cInstuctorName;
+		this.cInstructorName = cInstuctorName;
 	}
 	
 	

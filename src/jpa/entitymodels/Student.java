@@ -2,7 +2,8 @@ package jpa.entitymodels;
 
 import java.util.List;
 
-import javax.persistence.Basic;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -10,11 +11,11 @@ import javax.persistence.Id;
 public class Student {
 @Id
 	private String sEmail;
-@Basic
+@Column(nullable = false)
 	private String sName;
-@Basic
+@Column(nullable = false)
 	private String sPass;
-@Basic
+@Column(nullable = false)
 	private List sCourses;
 	
 	
