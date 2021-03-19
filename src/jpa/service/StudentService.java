@@ -29,27 +29,46 @@ public class StudentService extends AbstractDAO implements StudentDAO {
 
 	@Override
 	public Student getStudentByEmail(String email) {
-		Object result = null;
+		Student result = null;
 		
 		try {
 			connect();
-			result = em.createQuery("SELECT s FROM Student s WHERE s.sEmail = :email ").setParameter("email", email).getSingleResult();
+			result = (Student) em.createQuery("SELECT s FROM Student s WHERE s.sEmail = :email ").setParameter("email", email).getSingleResult();
 					;
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			dispose();
-		}
-//		
-		
-		System.out.println(result);
-		return null;
+		}		
+
+		return result;
 	}
 
 	@Override
 	public boolean validateStudent(String email, String password) {
-		// TODO Auto-generated method stub
-		return false;
+boolean result = false;
+		Student qResult = null;
+		try {
+			connect();
+			qResult = (Student) em.createQuery("SELECT s FROM Student s WHERE s.sEmail = :email AND s.sPass = :pass ").setParameter("email", email).setParameter("pass", password).getSingleResult();
+			if(qResult != null) {
+				result = true;
+			}
+		
+			;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			dispose();
+		}		
+System.out.println(result);
+		return result;
+
+	// don't forget this needs to be set up if the result does not get anything it is throwing an error	
+		
+		
+		
+		
 	}
 
 	@Override
@@ -60,8 +79,23 @@ public class StudentService extends AbstractDAO implements StudentDAO {
 
 	@Override
 	public List<Course> getStudentCourses(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Course> result = null;
+
+		String sql = "SELECT e.sCourses FROM Student e WHERE e.sEmail = :email";
+		try {
+			connect();
+			result = em.createQuery(sql, Course.class).setParameter("email", email).getResultList();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			dispose();
+		}
+
+		System.out.println("Student Courses RESULT" + result);
+		return result;
+
+		
 	}
 
 }
