@@ -9,7 +9,6 @@ import jpa.entitymodels.Student;
 import jpa.service.CourseService;
 import jpa.service.StudentService;
 
-
 public class SMSRunner {
 
 	private Scanner sin;
@@ -25,14 +24,13 @@ public class SMSRunner {
 		courseService = new CourseService();
 		studentService = new StudentService();
 	}
-	
-	
+
 	public static void main(String[] args) {
 
 		SMSRunner sms = new SMSRunner();
 		sms.run();
 	}
-	
+
 	private void run() {
 		// Login or quit
 		switch (menu1()) {
@@ -49,6 +47,7 @@ public class SMSRunner {
 
 		}
 	}
+
 	private int menu1() {
 		sb.append("\n1.Student Login\n2. Quit Application\nPlease Enter Selection: ");
 		out.print(sb.toString());
@@ -56,6 +55,7 @@ public class SMSRunner {
 
 		return sin.nextInt();
 	}
+
 	private boolean studentLogin() {
 		boolean retValue = false;
 		out.print("Enter your email address: ");
@@ -77,7 +77,7 @@ public class SMSRunner {
 		}
 		return retValue;
 	}
-	
+
 	private void registerMenu() {
 		sb.append("\n1.Register a class\n2. Logout\nPlease Enter Selection: ");
 		out.print(sb.toString());
@@ -98,14 +98,13 @@ public class SMSRunner {
 			if (courseNumber != 0) {
 				studentService.registerStudentToCourse(currentStudent.getsEmail(), courseNumber);
 				List<Course> sCourses = studentService.getStudentCourses(currentStudent.getsEmail());
-				
-				
 
 				out.println("MyClasses");
 				for (Course course : sCourses) {
 					out.println(course);
 				}
 			}
+			out.println("You have been signed out.");
 			break;
 		case 2:
 		default:
@@ -113,5 +112,3 @@ public class SMSRunner {
 		}
 	}
 }
-
-

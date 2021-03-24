@@ -10,22 +10,20 @@ public class CourseService extends AbstractDAO implements CourseDAO {
 
 	@Override
 	public List<Course> getAllCourses() {
-		
+
 		List<Course> result = null;
 		String sql = "SELECT e FROM Course e";
 		try {
 			connect();
 			result = em.createQuery(sql, Course.class).getResultList();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dispose();
 		}
-		
+
 		return result;
-	
+
 	}
-	
-	
 
 }
