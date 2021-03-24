@@ -23,7 +23,6 @@ public class StudentService extends AbstractDAO implements StudentDAO {
 			dispose();
 		}
 
-		System.out.println("Student RESULT" + result);
 		return result;
 	}
 
@@ -33,14 +32,13 @@ public class StudentService extends AbstractDAO implements StudentDAO {
 		
 		try {
 			connect();
-			result = (Student) em.createQuery("SELECT s FROM Student s WHERE s.sEmail = :email ").setParameter("email", email).getSingleResult();
-					;
+			result = em.find(Student.class, email);
+					
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			dispose();
 		}		
-
 		return result;
 	}
 
@@ -55,13 +53,13 @@ boolean result = false;
 				result = true;
 			}
 		
-			;
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			dispose();
 		}		
-System.out.println(result);
+
 		return result;
 
 	// don't forget this needs to be set up if the result does not get anything it is throwing an error	
@@ -73,29 +71,30 @@ System.out.println(result);
 
 	@Override
 	public void registerStudentToCourse(String email, int courseId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<Course> getStudentCourses(String email) {
-		
-		List<Course> result = null;
-
-		String sql = "SELECT e.sCourses FROM Student e WHERE e.sEmail = :email";
 		try {
 			connect();
-			result = em.createQuery(sql, Course.class).setParameter("email", email).getResultList();
+			em.getTransaction().begin();
+			Student studentR = em.find(Student.class, email);
+			List<Course> currentCourses = studentR.getsCourses();
+			Course addCourse = em.find(Course.class, courseId);
+			currentCourses.add(addCourse);
+			em.getTransaction().commit();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			dispose();
 		}
+	}
 
-		System.out.println("Student Courses RESULT" + result);
+	@Override
+	public List<Course> getStudentCourses(String email) {
+		Student studentR = getStudentByEmail(email);
+		List<Course> result = studentR.getsCourses();
+		
 		return result;
 
 		
 	}
 
 }
+

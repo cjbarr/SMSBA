@@ -8,6 +8,12 @@ import javax.persistence.Id;
 @Entity
 public class Course {
 
+@Override
+	public String toString() {
+		return cId + " " + cName + " " + cInstructorName;
+	}
+
+
 @Id
 	int cId;
 

@@ -22,7 +22,6 @@ public class CourseService extends AbstractDAO implements CourseDAO {
 			dispose();
 		}
 		
-		System.out.println("COURSE RESULT" + result);
 		return result;
 	
 	}

@@ -2,10 +2,13 @@ package jpa.entitymodels;
 
 import java.util.List;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Student {
@@ -15,8 +18,9 @@ public class Student {
 	private String sName;
 @Column(nullable = false)
 	private String sPass;
-@Column(nullable = false)
-	private List sCourses;
+@OneToMany (targetEntity = Course.class, cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+@JoinTable (name ="student_course")
+	private List<Course> sCourses;
 	
 	
 	public Student() {
@@ -24,7 +28,7 @@ public class Student {
 	}
 
 
-	public Student(String sEmail, String sName, String sPass, List sCourses) {
+	public Student(String sEmail, String sName, String sPass, List<Course> sCourses) {
 		super();
 		this.sEmail = sEmail;
 		this.sName = sName;
@@ -63,13 +67,19 @@ public class Student {
 	}
 
 
-	public List getsCourses() {
+	public List<Course> getsCourses() {
 		return sCourses;
 	}
 
 
-	public void setsCourses(List sCourses) {
+	public void setsCourses(List<Course> sCourses) {
 		this.sCourses = sCourses;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Student [sEmail=" + sEmail + ", sName=" + sName + ", sPass=" + sPass + ", sCourses=" + sCourses + "]";
 	}
 	
 	
