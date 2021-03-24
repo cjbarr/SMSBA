@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
+//Student object and corresponding jpa requirements
+//Allows gets and constructs student and links to appropriate sql tables
 @Entity
 public class Student {
 	@Id

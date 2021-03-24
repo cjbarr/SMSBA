@@ -18,4 +18,3 @@ public interface StudentDAO {
 	public List<Course> getStudentCourses(String email);
 
 }
-	

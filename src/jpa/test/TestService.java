@@ -9,6 +9,7 @@ class TestService {
 
 	StudentService studentService = new StudentService();
 
+	// tests Validate with an incorrect password
 	@Test
 	void testValidateStudentPass() {
 
@@ -21,6 +22,7 @@ class TestService {
 
 	}
 
+//tests Validate with an incorrect Email
 	@Test
 	void testValidateStudentEmail() {
 
@@ -33,6 +35,7 @@ class TestService {
 
 	}
 
+//	Tests Validate with Correct email and password
 	@Test
 	void testValidateStudentCorrectInfo() {
 

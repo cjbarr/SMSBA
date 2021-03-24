@@ -7,7 +7,7 @@ import jpa.dao.CourseDAO;
 import jpa.entitymodels.Course;
 
 public class CourseService extends AbstractDAO implements CourseDAO {
-
+//	Gets all courses from course list
 	@Override
 	public List<Course> getAllCourses() {
 

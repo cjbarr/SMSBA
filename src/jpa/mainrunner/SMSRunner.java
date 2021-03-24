@@ -18,6 +18,8 @@ public class SMSRunner {
 	private StudentService studentService;
 	private Student currentStudent;
 
+//Largely from the hints document, menu takes in input and runs appropriate results
+	// Has been modified in places to fit my set up
 	public SMSRunner() {
 		sin = new Scanner(System.in);
 		sb = new StringBuilder();

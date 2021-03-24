@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+//Course object and corresponding jpa requirements
+//Allows gets and constructs course and links to appropriate sql tables
 @Entity
 public class Course {
 
