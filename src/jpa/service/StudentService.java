@@ -77,6 +77,7 @@ public class StudentService extends AbstractDAO implements StudentDAO {
 			Student studentR = em.find(Student.class, email);
 			List<Course> currentCourses = studentR.getsCourses();
 			Course addCourse = em.find(Course.class, courseId);
+			if(addCourse != null) {
 			if (currentCourses.contains(addCourse)) {
 				System.out.println("You are already registered in that course!");
 			} else {
@@ -84,6 +85,7 @@ public class StudentService extends AbstractDAO implements StudentDAO {
 				em.getTransaction().commit();
 
 			}
+			}else {System.out.println("That is not a course");}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
